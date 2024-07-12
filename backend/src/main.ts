@@ -7,7 +7,7 @@ import { AppModule } from './app/app.module';
 async function bootstrap() {
   const PORT = process.env.PORT || 3000;
 
-  const app = await NestFactory.create(AppModule, { cors: true, origin: 'https://api.spamjacket.kpd.nomorepartiesco.ru' });
+  const app = await NestFactory.create(AppModule, { cors: true });
   const reflector = app.get(Reflector);
 
   app.useGlobalGuards(new JwtAuthGuard(reflector));
