@@ -1,0 +1,14 @@
+# Deps
+
+node_modules/
+
+# Dist
+
+dist/
+build/
+
+# IDE Files
+
+.idea/
+.vscode
+.DS_Store
