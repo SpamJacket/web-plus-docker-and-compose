@@ -39,7 +39,7 @@ services:
       - backend
 
   adminer:
-    container_name: adminer
+    container_name: compose-adminer
     image: adminer
     restart: always
     ports:
