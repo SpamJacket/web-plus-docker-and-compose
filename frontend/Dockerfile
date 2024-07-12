@@ -1,0 +1,13 @@
+FROM node:16-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --no-audit --no-fund
+COPY . ./
+RUN npm run build
+
+FROM nginx:1.23.1-alpine as production
+WORKDIR /app
+COPY --from=builder /app/package*.json /usr/share/nginx/html
+COPY ./nginx/conf.d/default.conf /etc/nginx/conf.d
+
+CMD ["nginx", "-g", "daemon off;"]
