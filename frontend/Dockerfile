@@ -9,5 +9,6 @@ FROM nginx:1.23.1-alpine as production
 WORKDIR /app
 COPY --from=builder /app/package*.json /usr/share/nginx/html
 COPY ./nginx/conf.d/default.conf /etc/nginx/conf.d
+EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
