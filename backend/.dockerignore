@@ -9,6 +9,3 @@ build/
 .idea/
 .vscode
 .DS_Store
-
-# Исходный код
-src/

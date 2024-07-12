@@ -6,6 +6,7 @@ services:
       context: backend
       dockerfile: Dockerfile
     image: kupipodariday-backend
+    restart: unless-stopped
     ports:
       - 4000:3000
     env_file:
@@ -29,8 +30,9 @@ services:
   postgres:
     container_name: compose-postgres
     image: postgres
+    restart: unless-stopped
     volumes:
-      - postgres_data: /data/postgres
+      - postgres_data:/data/postgres
     env_file:
       - backend/.env
     networks:
@@ -45,9 +47,10 @@ services:
     networks:
       - backend
 
-  volumes:
-    postgres_data:
+volumes:
+  postgres_data:
 
-  networks:
-    frontend:
-    backend:
+networks:
+  frontend:
+  backend:
+
