@@ -1,5 +1,6 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory, Reflector } from '@nestjs/core';
+import cors from 'cors';
 
 import { JwtAuthGuard } from './auth/guard/jwt-auth.guard';
 import { AppModule } from './app/app.module';
@@ -10,7 +11,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const reflector = app.get(Reflector);
 
-  app.enableCors({ origin: 'https://spamjacket.kpd.nomorepartiesco.ru' });
+  app.use(cors({ origin: 'https://spamjacket.kpd.nomorepartiesco.ru' }));
+  // app.enableCors({ origin: 'https://spamjacket.kpd.nomorepartiesco.ru' });
 
   app.useGlobalGuards(new JwtAuthGuard(reflector));
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
